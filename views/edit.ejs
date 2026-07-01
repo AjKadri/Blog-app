@@ -24,8 +24,8 @@
 	<body class="d-flex flex-column min-vh-100">
 		<header><%- include('./partials/header.ejs' ) %></header>
 		<main class="container flex-grow-1 py-4">
-			<h1 class="text-center">Compose Post</h1>
-			<p class="text-center">Create a new blog post by filling out the form below.</p>
+			<h1 class="text-center">Edit Post</h1>
+			<p class="text-center">Edit your blog post.</p>
 
             <!--  I should have added a form here to submit the title and content of the post.
             The form should have an action that points to the route that handles the post submission, and it should use the POST method.
@@ -35,21 +35,17 @@
             <textarea name="content" class="form-control" rows="19" placeholder="Content"></textarea>
             <input type="submit" value="SAVE" /> -->
 
-            <form action="/compose" method="POST">
-                <div class="mb-3">
-                  <h4> <label class="form-label" placeholder="Title">Title</label></h4>
-                    <input type="text" name="title" class="form-control" placeholder="Title" maxlength="100" />
-                </div>
+            <form action="/posts/<%= post.id %>/edit" method="POST">
+				<h4> <label class="form-label" placeholder="Title">Title</label></h4>
+				<input type="text" name="title" class="form-control" value="<%= post.title %>">
 
-                <div class="mb-3">
-                   <h4><label class="form-label" >Content</label></h4>
-                    <textarea name="content" class="form-control" rows="15" placeholder="Content" maxlength="1000"></textarea>
-                </div>
+				<h4><label class="form-label" >Content</label></h4>
+				<textarea name="content" class="form-control" rows="15"><%= post.content %></textarea>
 
-                <button class="btn btn-primary">
-                    Publish
-                </button>
-            </form>
+				<button class="btn btn-success mt-3">
+					Save Changes
+				</button>
+			</form>
 
 		</main>
 		<footer>

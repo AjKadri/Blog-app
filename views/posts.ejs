@@ -21,10 +21,26 @@
 		<link rel="stylesheet" href="/styles/main.css" />
 	</head>
 
-	<body>
+	<body class="d-flex flex-column min-vh-100">
 		<header><%- include('./partials/header.ejs' ) %></header>
-		<main class="container py-4">
-			<h1>View Posts</h1>
+		<main class="container flex-grow-1 py-4">
+            <% if (locals.posts.length > 0) { %>
+                <h1 class="text-center mb-4">All Posts</h1>
+                    <% posts.forEach((post) => { %>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= post.title %></h5>
+                                    <p class="card-text"><%= post.content %></p>
+                                    <a href="/posts/<%= post.id %>/edit" class="btn btn-primary"><i class="bi bi-pencil-fill"></i>
+                                        Edit
+                                    </a>
+                                </div>
+                            </div>
+                    <% }); %>
+            <% } else { %>
+                <h1 class="text-center mb-4">All Posts</h1>
+                <p>No posts available.</p>
+            <% } %>
 		</main>
 		<footer>
 			<%- include('./partials/footer.ejs') %>
